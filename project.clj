@@ -5,8 +5,8 @@
   :license {:name "Apache 2"
             :url "http://www.apache.org/licenses/LICENSE-2.0.html"}
   :resource-paths ["etc" "resources"]
-  :dependencies [[cheshire "5.0.1"]
-                 [clj-http "0.6.3"]
+  :dependencies [[cheshire "5.2.0"]
+                 [clj-http "0.7.7"]
                  [org.clojure/clojure "1.5.1"]
                  [org.clojure/tools.cli "0.2.2"]
                  [org.elasticsearch/elasticsearch-river-wikipedia "1.2.0"]
