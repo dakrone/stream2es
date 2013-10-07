@@ -16,19 +16,26 @@
 (defn post
   ([url data]
      (log/trace "POSTing" (count (.getBytes data)) "bytes")
-     (http/post url {:body data :connection-manager conn-pool}))
+     (http/post url {:body data
+                     :connection-manager conn-pool
+                     :client-params {"http.tcp.nodelay" true}}))
   ([url index data]
      (http/post (index-url url index)
-                {:body data :connection-manager conn-pool})))
+                {:body data
+                 :connection-manager conn-pool
+                 :client-params {"http.tcp.nodelay" true}})))
 
 (defn delete [url index]
   (http/delete (index-url url index)
-               {:throw-exceptions false :connection-manager conn-pool}))
+               {:throw-exceptions false
+                :connection-manager conn-pool
+                :client-params {"http.tcp.nodelay" true}}))
 
 (defn exists? [url index]
   (try
     (http/get (format "%s/_mapping" (index-url url index))
-              {:connection-manager conn-pool})
+              {:connection-manager conn-pool
+               :client-params {"http.tcp.nodelay" true}})
     (catch Exception _)))
 
 (defn error-capturing-bulk [url items serialize-bulk]
